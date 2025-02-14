@@ -1,5 +1,10 @@
-export default function Home () {
+import CategoriesCard from "@/components/ProductsCard";
+import { ProductsCards } from "@/components/ProductsCard";
+
+export default function Home() {
   return (
-    <h1>Hello world</h1>
+    <>
+      <CategoriesCard />
+    </>
   );
 }
