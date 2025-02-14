@@ -16,13 +16,28 @@ export const metadata = {
   description: "Like free market, but closed.",
 };
 
-export default function RootLayout({ children }) {
+function Header () {
+  return (
+    <header className="w-full p-4 bg-matisse-500 text-white text-center">
+      <h1 className="text-2xl font-semibold text-left">Closed market</h1>
+    </header>
+  );
+}
+
+export default function RootLayout ({ children }) {
   return (
     <html lang="en">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        {children}
+        <div className="flex flex-col h-screen">
+          <Header />
+          <div className="container flex-grow mx-auto">
+            <main className="w-full h-full flex justify-center items-center">
+              {children}
+            </main>
+          </div>
+        </div>
       </body>
     </html>
   );
