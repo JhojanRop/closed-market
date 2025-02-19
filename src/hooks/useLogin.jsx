@@ -34,5 +34,5 @@ export default function useLogin () {
     }
   }
 
-  return { username, password, message, handleInputChanges, handleSubmit };
+  return { username, password, message, handleInputChanges, handleSubmit, clearMessage: () => setMessage({ text: '', type: '' }) };
 }
