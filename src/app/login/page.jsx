@@ -1,11 +1,16 @@
+'use client'
 import { FaFacebook } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc"
 import Button from "@/components/Button";
 import InputText from "@/components/InputText";
 import Link from "next/link";
 import LogoIconButton from "@/components/LogoIconButton";
+import Message from "@/components/Message";
+import useLogin from "@/hooks/useLogin";
 
 export default function LoginPage () {
+  const { username, password, message, handleInputChanges, handleSubmit } = useLogin();
+
   return (
     <div className="bg-gradient-to-tr from-primary-300 to-white">
       <main className="container px-5 mx-auto w-full h-screen flex flex-col justify-center">
@@ -15,9 +20,10 @@ export default function LoginPage () {
 
         <section className="w-full max-w-md mx-auto space-y-5 flex flex-grow flex-col justify-center">
           <h2 className="text-center text-xl">Please enter your account details</h2>
-          <form className="flex flex-col gap-4">
-            <InputText label="Email" type="email" />
-            <InputText label="Password" type="password" />
+          {message.text && <Message message={message.text} type={message.type} clearMessage={() => setMessage({ text: '', type: '' })} />}
+          <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
+            <InputText label="Username" name="username" type="text" value={username} onChange={handleInputChanges} />
+            <InputText label="Password" name="password" type="password" value={password} onChange={handleInputChanges} />
             <Link href="/forgot-password" className="text-right text-sm font-light underline">Forgot password</Link>
             <Button type="submit">Sign in</Button>
           </form>
